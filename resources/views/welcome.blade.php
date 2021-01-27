@@ -61,8 +61,10 @@
         </div>
     </nav>
 
-    <div class="welkom_txt"> Welkom</div>
+
     <div id="slider" class="carousel slide" data-ride="carousel">
+        <div class="welkom_txt"> Welkom</div>
+
         <div class="carousel-inner">
             <div class="carousel-item active">
                 <img class="d-block w-100" src="{{url('/img/1.jpg')}}" alt="First slide">

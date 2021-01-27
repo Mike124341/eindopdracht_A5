@@ -20,12 +20,13 @@
 }
 
 .welkom_txt{
-    top: 20%;
-    left: 50%;
-    transform: translate(45%, 10%);
+    position: absolute;
+    top: 83%;
+    left: 4%;
     font-size: 100px;
     font-family: Brush Script MT;
     color: grey;
+    z-index: 1;
 }
 :root {
   --blue: #3490dc;
