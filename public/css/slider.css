@@ -1,0 +1,20 @@
+
+#slider {
+    max-height: 800px;
+    min-height: 800px;
+    max-width: 1600px;
+    min-width: 1600px;
+  
+    margin: auto;
+    padding-top: 20px;
+  }
+  .carousel-inner{
+    border: solid 4px #6c757d;
+    border-radius: 5%;
+    max-height: 800px;
+    min-height: 800px;
+    max-width: 1600px;
+    min-width: 1600px;
+  }
+  
+  

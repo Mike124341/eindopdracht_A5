@@ -8,6 +8,25 @@
  * Licensed under MIT (https://github.com/twbs/bootstrap/blob/main/LICENSE)
  */
 
+.nav_link, .nav_link > a{
+  display: inline-block;
+  padding-top: 0.32rem;
+  padding-bottom: 0.32rem;
+  margin-right: 1rem;
+  font-size: 1.125rem;
+  line-height: inherit;
+  white-space: nowrap;
+  color: #FFF !important;
+}
+
+.welkom_txt{
+    top: 20%;
+    left: 50%;
+    transform: translate(45%, 10%);
+    font-size: 100px;
+    font-family: Brush Script MT;
+    color: grey;
+}
 :root {
   --blue: #3490dc;
   --indigo: #6574cd;
@@ -71,9 +90,9 @@ body {
   font-size: 0.9rem;
   font-weight: 400;
   line-height: 1.6;
-  color: #212529;
+  color: #f8fafc;
   text-align: left;
-  background-color: #f8fafc;
+  background-color: #131516;
 }
 
 [tabindex="-1"]:focus:not(:focus-visible) {
