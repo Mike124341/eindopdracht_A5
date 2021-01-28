@@ -8,27 +8,10 @@
  * Licensed under MIT (https://github.com/twbs/bootstrap/blob/main/LICENSE)
  */
 
-.nav_link, .nav_link > a{
-  display: inline-block;
-  padding-top: 0.32rem;
-  padding-bottom: 0.32rem;
-  margin-right: 1rem;
-  font-size: 1.125rem;
-  line-height: inherit;
-  white-space: nowrap;
-  color: #FFF !important;
-}
 
-.welkom_txt{
-    position: absolute;
-    top: 83%;
-    left: 4%;
-    font-size: 100px;
-    font-family: Brush Script MT;
-    color: grey;
-    z-index: 1;
-}
 :root {
+  --navBGcolor: #343a40;
+  --bodyBG: #131516;
   --blue: #3490dc;
   --indigo: #6574cd;
   --purple: #9561e2;
@@ -57,6 +40,30 @@
   --breakpoint-xl: 1200px;
   --font-family-sans-serif: "Nunito", sans-serif;
   --font-family-monospace: SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+}
+.card > div {
+  background-color: #3490dc;
+}
+
+.nav_link, .nav_link > a{
+  display: inline-block;
+  padding-top: 0.32rem;
+  padding-bottom: 0.32rem;
+  margin-right: 1rem;
+  font-size: 1.125rem;
+  line-height: inherit;
+  white-space: nowrap;
+  color: #FFF !important;
+}
+
+.welkom_txt{
+    position: absolute;
+    top: 83%;
+    left: 4%;
+    font-size: 100px;
+    font-family: Brush Script MT;
+    color: grey;
+    z-index: 1;
 }
 
 *,
@@ -93,7 +100,7 @@ body {
   line-height: 1.6;
   color: #f8fafc;
   text-align: left;
-  background-color: #131516;
+  background-color: var(--bodyBG);
 }
 
 [tabindex="-1"]:focus:not(:focus-visible) {
