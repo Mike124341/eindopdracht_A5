@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateBandLedensTable extends Migration
+class BandLeden extends Migration
 {
     /**
      * Run the migrations.
@@ -13,15 +13,13 @@ class CreateBandLedensTable extends Migration
      */
     public function up()
     {
-        Schema::create('band_leden', function (Blueprint $table) {
+        Schema::create('band_ledens', function (Blueprint $table) {
             $table->unsignedBigInteger('band_ID');
             $table->unsignedBigInteger('user_ID');
             $table->unique(['band_ID', 'user_ID']);
             $table->foreign('user_ID')->references('id')->on('users')->onDelete('cascade');
             $table->foreign('band_ID')->references('band_ID')->on('bands')->onDelete('cascade');
             $table->timestamps();
-
-
         });
     }
 
@@ -32,6 +30,6 @@ class CreateBandLedensTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('band_ledens');
+        //
     }
 }

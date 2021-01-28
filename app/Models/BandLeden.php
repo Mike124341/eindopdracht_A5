@@ -5,13 +5,9 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Band_requests extends Model
+class BandLeden extends Model
 {
     use HasFactory;
-
-    protected $fillable = [
-        'sender_ID', 'band_ID', 'accepted',
-    ];
 
     public function user()    {
         return $this->belongsToMany(user::class);
@@ -19,5 +15,9 @@ class Band_requests extends Model
 
     public function bands()    {
         return $this->belongsToMany(Bands::class);
+    }
+
+    public function band_request()    {
+        return $this->belongsToMany(Band_requests::class);
     }
 }
