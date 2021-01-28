@@ -45,6 +45,13 @@
   background-color: #3490dc;
 }
 
+.message{
+  max-width: 30%;
+  text-align: center;
+  margin: auto;
+  padding-bottom: 10px;
+}
+
 .nav_link, .nav_link > a{
   display: inline-block;
   padding-top: 0.32rem;
