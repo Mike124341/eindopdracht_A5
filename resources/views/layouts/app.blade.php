@@ -62,7 +62,16 @@
                             </a>
 
                             <div class="dropdown-menu dropdown-menu-right" style="background-color:#3490dc; min-width: 0rem !important; padding:
-                                 0 !important 0; margin: 0 !important; padding: 0px  !important; position:absolute;" aria-labelledby="navbarDropdown">
+                                0 !important 0; margin: 0 !important; padding: 0px  !important; position:absolute;" aria-labelledby="navbarDropdown">
+
+                                <a class="dropdown-item" href="{{ route('home') }}">
+                                    {{ __('home') }}
+                                </a>
+
+                                <a class="dropdown-item" href="{{ route('verzoeken') }}">
+                                    {{ __('verzoeken') }}
+                                </a>
+                                
                                 <a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">
                                     {{ __('Logout') }}

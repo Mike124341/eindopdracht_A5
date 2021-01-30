@@ -2,7 +2,7 @@
 
 @section('content')
 
-<h1 style="text-align:center">Welkom! {{$user->name}}</h1>
+<h1 style="text-align:center">Welkom! {{$data['user']['name']}}</h1>
 
 <!-- Message -->
 @if (\Session::has('success'))
@@ -29,7 +29,7 @@
 @endif
 <!-- error display einde -->
 
-@if($current_requests != '[]') <!-- Dit is de standaard value van de var dus als de querry niks terug brengt-->
+@if($data['current_requests'] != '[]') <!-- Dit is de standaard value van de var dus als de querry niks terug brengt-->
     <div class="alert alert-info message" role="alert">
         <button type="button" class="close" data-dismiss="alert" aria-label="Close">
             <span aria-hidden="true">×</span>
@@ -37,9 +37,9 @@
         <h4>Let op!</h4>
 
         <p>
-            Hallo {{$user->name}} er is iemand geïnteresseerd in uw band! <br>
+            Hallo {{$data['user']['name']}} er is iemand geïnteresseerd in uw band! <br>
             Deze gebruiker(s) heeft gevraagd of hij/zij mee mag doen met uw band. <br>
-            Om de verzoek(en) te bekijken klik hier -> <a href="/band-join-accept"> Verzoeken</a> <br>
+            Om de verzoek(en) te bekijken klik hier -> <a href="/verzoeken"> Verzoeken</a> <br>
         </p>
         
     </div>
@@ -88,11 +88,11 @@
 <!--- Pop Up HTML voor het Aanmelden bij een band -->
 <div class="modal fade bd-example-modal-lg" id="sentBandRequest_modal" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
   <div class="modal-dialog modal-lg">
-    <div class="modal-content">
+    <div class="modal-content bg-dark">
       <form action="/join-band-request" method="post">
         @csrf
-        <label for="band_request_join">Voer band naam in:</label>
-        <input type="text" placeholder="Band Naam" name="band_request_join">
+        <label for="band_request_join">Voer band ID in:  </label>
+        <input type="text" placeholder="Hier de id van de band" name="band_request_join">
 
         <button type="submit" class="btn btn-sm btn-warning">Aanmelden</button>
       </form>
@@ -115,10 +115,10 @@
                     </div>
                     @endif
                     <!-- Begin user gegevens en buttons-->
-                    <ul style="color:{{$user->tesktKleur}}">
-                        <li>Gebruikers ID: {{$user->id}}</li>
-                        <li>Gebruikers Naam: {{$user->name}}</li>
-                        <li>Gebruikers E-mail: {{$user->email}}</li>
+                    <ul>
+                        <li>Gebruikers ID: {{$data['user']['id']}}</li>
+                        <li>Gebruikers Naam: {{$data['user']['name']}}</li>
+                        <li>Gebruikers E-mail: {{$data['user']['email']}}</li>
                         <br>
                         <!-- Pop up knop hier onder-->
                         <li>
@@ -138,11 +138,11 @@
 
                 <div class="card-body bg-dark">
                     <ul>Uw bands: 
-                        @for($i=0; $i<$count['userBands']; $i++)
+                        @for($i=0; $i<$data['countUserBands']; $i++)
                             <li>{{$user_bands[$i]['name']}}</li>
                         @endfor
                         <br>
-                        <li> <a style="color:#fff;"href="">Uw verzoeken: {{$count['bandVerzoeken']}}</a></li>
+                        <li> <a style="color:#fff;"href="/verzoeken">Uw verzoeken: {{$data['countBandVerzoeken']}}</a></li>
                         <br>
 
                     </ul>
@@ -156,10 +156,10 @@
                         <h4 style="text-align:center;"> Lijst Bands</h4>
 
                         <ul style="padding-left:40%;">
-                            @for ($i = 0; $i < $count['bands']; $i++)
+                            @for ($i = 0; $i < $data['countBands']; $i++)
                                 <li>
-                                ID: {{$bands[$i]['band_ID']}} - 
-                                {{$bands[$i]['name']}}
+                                ID: {{$data['bands'][$i]['band_ID']}} - 
+                                {{$data['bands'][$i]['name']}}
                                 </li>
                             @endfor
                         </ul>

@@ -44,9 +44,17 @@ class HomeController extends Controller
         #Alle bands in de DB
         $bands = Bands::get();
         #Zodat ik niet meerdere count variablen mee hoef te geven aan de compact
-        $count = array('bands' => count($bands), 'userBands' => count($user_bands), 'bandVerzoeken' => count($current_requests));
+        $data = array(
+            'user' => $user,                                                            #Haal Data van de user op en zet in var user
+            'current_requests' => Band_Requests::where('band_lid', $user->id)->get(),   #de band verzoeken van de huidige user
+            'user_bands' => $user_bands,
+            'bands' => Bands::get(),                                                    #Alle bands in de DB
+            'countBands' => count($bands),
+            'countUserBands' => count($user_bands),
+            'countBandVerzoeken' => count($current_requests),
+        );
 
-        return view('home', compact('user', 'user_bands','bands', 'count', 'current_requests'));
+        return view('home', compact('data','user_bands'));
     }
 
 
