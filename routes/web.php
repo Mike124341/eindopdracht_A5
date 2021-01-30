@@ -22,6 +22,7 @@ Auth::routes();
 Route::group(['middleware' => ['auth']], function() {
     #password veranderen
     Route::post('passupdate', 'App\Http\Controllers\Pop_upController@changePassword');
+    Route::post('join-band-request', 'App\Http\Controllers\Pop_upController@sent_band_request');
 
   });
 

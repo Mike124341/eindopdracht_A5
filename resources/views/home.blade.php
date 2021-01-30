@@ -29,6 +29,22 @@
 @endif
 <!-- error display einde -->
 
+@if($current_requests != '[]') <!-- Dit is de standaard value van de var dus als de querry niks terug brengt-->
+    <div class="alert alert-info message" role="alert">
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">×</span>
+        </button>
+        <h4>Let op!</h4>
+
+        <p>
+            Hallo {{$user->name}} er is iemand geïnteresseerd in uw band! <br>
+            Deze gebruiker(s) heeft gevraagd of hij/zij mee mag doen met uw band. <br>
+            Om de verzoek(en) te bekijken klik hier -> <a href="/band-join-accept"> Verzoeken</a> <br>
+        </p>
+        
+    </div>
+@endif
+
 <!-- Hier komt de code voor de pop up waarmee je jouw wachtwoord veranderd -->
 <div class="modal fade bd-example-modal-lg" id="passchange_modal" tabindex="-1" role="dialog"
     aria-labelledby="myLargeModalLabel" aria-hidden="true">
@@ -69,6 +85,21 @@
     </div>
 </div>
 
+<!--- Pop Up HTML voor het Aanmelden bij een band -->
+<div class="modal fade bd-example-modal-lg" id="sentBandRequest_modal" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+      <form action="/join-band-request" method="post">
+        @csrf
+        <label for="band_request_join">Voer band naam in:</label>
+        <input type="text" placeholder="Band Naam" name="band_request_join">
+
+        <button type="submit" class="btn btn-sm btn-warning">Aanmelden</button>
+      </form>
+    </div>
+  </div>
+</div>
+
 <!-- Begin cards -->
 <div class="container-fluid">
     <div class="row justify-content-center">
@@ -84,7 +115,6 @@
                     </div>
                     @endif
                     <!-- Begin user gegevens en buttons-->
-                    <h5>Gebruiker gegevens</h5>
                     <ul style="color:{{$user->tesktKleur}}">
                         <li>Gebruikers ID: {{$user->id}}</li>
                         <li>Gebruikers Naam: {{$user->name}}</li>
@@ -107,20 +137,32 @@
                 <div class="card-header">{{ __('Beheer uw Band(s)') }}</div>
 
                 <div class="card-body bg-dark">
-                    <ul>
-                        <li>Uw bands: {{$band_data[0]['name']}}</li>
-                        <li>
-                            <button class="btn-outline-warning btn-sm btn" data-toggle="modal"
-                                data-target="#sentBandRequest_modal">
-                                Meedoen aan bij Band
-                            </button>
-                        </li>
-                    </ul>
+                    <ul>Uw bands: 
+                        @for($i=0; $i<$count['userBands']; $i++)
+                            <li>{{$user_bands[$i]['name']}}</li>
+                        @endfor
+                        <br>
+                        <li> <a style="color:#fff;"href="">Uw verzoeken: {{$count['bandVerzoeken']}}</a></li>
+                        <br>
 
-                    <div style="text-align:center;">
-                        Lijst Bands <br>
-                        {{var_dump(count($allBands))}}
-                        {{$allBands}}
+                    </ul>
+                    <hr style="border-color:#FFF !important">
+                    <div>
+                        <button style="margin-left: 37%;" class="btn-outline-warning btn-sm btn" data-toggle="modal" data-target="#sentBandRequest_modal">
+                            Meedoen aan bij Band
+                        </button>
+                        <br>
+                        <br>
+                        <h4 style="text-align:center;"> Lijst Bands</h4>
+
+                        <ul style="padding-left:40%;">
+                            @for ($i = 0; $i < $count['bands']; $i++)
+                                <li>
+                                ID: {{$bands[$i]['band_ID']}} - 
+                                {{$bands[$i]['name']}}
+                                </li>
+                            @endfor
+                        </ul>
                     </div>
                    
                 </div>

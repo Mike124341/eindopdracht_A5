@@ -41,19 +41,12 @@
             @if (Route::has('login'))
             <div class="hidden fixed top-0 right-0 sm:block">
                 @auth
-                <button class="btn btn-outline-secondary">
-                    <a href="{{ url('/home') }}" style="color:#fff;" class="text-sm text-gray-700 underline">Home</a>
-                </button>
+                    <a href="{{ url('/home') }}" style="color:#fff;" class="btn btn-outline-secondary">Home</a>
                 @else
-                <button class="btn btn-outline-secondary">
-                    <a href="{{ route('login') }}" style="color:#fff;" class="text-sm text-gray-700 underline">Login</a>
-                </button>
-
+                    <a href="{{ route('login') }}" style="color:#fff;" class="btn btn-outline-secondary">Login</a>
                 @if (Route::has('register'))
-                <button class="btn btn-outline-secondary">
                     <a href="{{ route('register') }}" style="color:#fff;"
-                        class="text-sm text-gray-700 underline">Register</a>
-                </button>
+                        class="btn btn-outline-secondary">Register</a>
                 @endif
                 @endif
             </div>

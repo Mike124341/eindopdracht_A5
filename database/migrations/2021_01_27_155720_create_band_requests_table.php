@@ -17,9 +17,13 @@ class CreateBandRequestsTable extends Migration
             $table->id();
             $table->unsignedBigInteger('sender_ID');
             $table->unsignedBigInteger('band_ID');
+            $table->unsignedBigInteger('band_lid');
             $table->tinyInteger('accepted');
+
+            $table->unique(['band_ID', 'sender_ID', 'band_lid']);
             $table->foreign('sender_ID')->references('id')->on('users')->onDelete('cascade');
             $table->foreign('band_ID')->references('band_ID')->on('bands')->onDelete('cascade');
+            $table->foreign('band_lid')->references('user_ID')->on('Bandlends')->onDelete('cascade');
             $table->timestamps();
         });
     }
