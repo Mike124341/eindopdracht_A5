@@ -14,11 +14,9 @@ class CreateBandVideosTable extends Migration
     public function up()
     {
         Schema::create('band_videos', function (Blueprint $table) {
-            $table->integer('id');
             $table->unsignedBigInteger('band_ID');
             $table->string('video');
             $table->foreign('band_ID')->references('band_ID')->on('bands')->onDelete('cascade');
-            $table->timestamps();
         });
     }
 

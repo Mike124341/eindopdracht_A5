@@ -18,22 +18,27 @@
     <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
 
     <!-- Styles -->
+    <!-- <link href="{{ asset('/css/bandTemp.css') }}" rel="stylesheet"> -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+    <link href="{{ url('public/css/search.css') }}" rel="stylesheet">
+
+
 </head>
 
 <body>
     <div id="app">
         <nav class="navbar navbar-dark bg-dark justify-content-between sticky-top">
-            <a class="navbar-brand">EPK</a>
+            <a href="/" class="navbar-brand">EPK</a>
             <div class="nav_link">
-                <a href="">Bands</a>
+                <a href="{{ route('bands') }}">Bands</a>
                 <a href="">Informatie</a>
                 <a href="">Contact</a>
             </div>
-            <form class="form-inline">
-                <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+            <form class="form-inline" method="POST" action="/search">
+            @csrf
+                <input class="form-control mr-sm-2" type="search" placeholder="Band Naam" aria-label="Search" name="keyword">
                 <button class="btn btn btn-outline-secondary my-2 my-sm-0" style="color:#fff;"
-                    type="submit">Search</button>
+                    type="submit">Zoeken</button>
             </form>
                     <!-- Right Side Of Navbar -->
                     <ul class="navbar-nav" style="flex-direction:row;">

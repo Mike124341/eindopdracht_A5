@@ -62,16 +62,42 @@
   white-space: nowrap;
   color: #FFF !important;
 }
+@font-face {
+  font-family: neon;
+  src: url(https://s3-us-west-2.amazonaws.com/s.cdpn.io/707108/neon.ttf);
+}
 
 .welkom_txt{
     position: absolute;
     top: 83%;
-    left: 4%;
+    left: 2%;
     font-size: 100px;
-    font-family: Brush Script MT;
-    color: grey;
+    font-family: neon;
     z-index: 1;
+
+    font-family: neon;
+    color: #426DFB;
+    text-shadow: 0 0 3vw #2356FF;
 }
+
+.welkom_txt {
+  animation: welkom_txt 1s ease infinite;
+  -moz-animation: welkom_txt 1s ease infinite;
+  -webkit-animation: welkom_txt 1s ease infinite;
+}
+
+@keyframes welkom_txt {
+  0%,
+  100% {
+    text-shadow: 0 0 1vw #FA1C16, 0 0 3vw #FA1C16, 0 0 10vw #FA1C16, 0 0 10vw #FA1C16, 0 0 .4vw #FED128, .5vw .5vw .1vw #806914;
+    color: #FED128;
+  }
+  50% {
+    text-shadow: 0 0 .5vw #800E0B, 0 0 1.5vw #800E0B, 0 0 5vw #800E0B, 0 0 5vw #800E0B, 0 0 .2vw #800E0B, .5vw .5vw .1vw #40340A;
+    color: #806914;
+  }
+}
+
 
 *,
 *::before,

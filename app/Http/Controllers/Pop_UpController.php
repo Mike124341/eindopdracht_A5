@@ -80,4 +80,26 @@ class Pop_UpController extends Controller
 
         return redirect()->back()->with('success', 'Verzoek verstuurd!');
     }
+
+        #Hier komt de functie voor het updaten van de pagina kleur
+        public function updateColor(Request $request)   {
+            
+            #variable komt de input in te staan tweede argument is voor als niet is ingevoerd
+            #LET OP Straks moet hier de kleur van uit de DATABASE komen
+            $achtergrondColor = $request->input('achtergrondkleur');
+            $tekstColor = $request->input('tekstkleur');
+            $id = $request->input('id');
+            
+            if (isset($id))   {
+                $colors = Bands::where('band_ID', $id)->update(
+                    ['color_bg' => $achtergrondColor, 'color_txt' => $tekstColor] );
+
+                return redirect()->back()->with('success', 'Kleuren zijn veranderd');
+            }
+            #Update kleur in de data base
+
+    
+            return back()->withErrors(['Foutmelding', 'er is iets misgegaan']);
+        }
+
 }

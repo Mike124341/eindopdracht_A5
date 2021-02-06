@@ -14,11 +14,9 @@ class CreateBandPicturesTable extends Migration
     public function up()
     {
         Schema::create('band_pictures', function (Blueprint $table) {
-            $table->integer('id');
             $table->unsignedBigInteger('band_ID');
             $table->string('picture');
             $table->foreign('band_ID')->references('band_ID')->on('bands')->onDelete('cascade');
-            $table->timestamps();
         });
     }
 

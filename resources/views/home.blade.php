@@ -85,6 +85,56 @@
     </div>
 </div>
 
+<!-- Hier komt de code voor de pop up waarmee je een band creëert -->
+<div class="modal fade bd-example-modal-lg" id="createBand_modal" tabindex="-1" role="dialog"
+    aria-labelledby="myLargeModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content bg-dark">
+            <form class="form-horizontal" action="/new-band" method="post">
+                @csrf
+                        <!-- Band naam -->
+                <div class="form-group">
+                    <label class="control-label col-sm-2" for="bandName">De naam van uw band:</label>
+                    <div class="col-sm-10">
+                        <input type="text" placeholder="Band Naam" class="form-control" name="bandName"
+                            id="bandName">
+                    </div>
+                </div>
+                        <!--Band omschrijving  -->
+                <div class="form-group">
+                    <label class="control-label col-sm-2" for="disc">omschrijving van uw band:</label>
+                    <div class="col-sm-10">
+                        <input type="text" placeholder="Band omschrijving" class="form-control" name="disc"
+                            id="disc">
+                    </div>
+                </div>
+                        <!-- Band Tekst Kleur -->
+                <div class="form-group">
+                    <label class="control-label col-sm-2" for="color-txt">Tekst kleur band:</label>
+                    <div class="col-sm-10">
+                        <input type="color" placeholder="Band text kleur" class="form-control" name="color-txt"
+                            id="color-txt">
+                    </div>
+                </div>
+                        <!-- Band Achtergrond Kleur -->
+                <div class="form-group">
+                    <label class="control-label col-sm-2" for="color-bg">Achtergronds kleur band:</label>
+                    <div class="col-sm-10">
+                        <input type="color" placeholder="Band achtergrond kleur" class="form-control" name="color-bg"
+                            id="color-bg">
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <div class="col-sm-offset-2 col-sm-10">
+                        <button type="submit" class="btn btn-sm btn-warning">creëren</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
 <!--- Pop Up HTML voor het Aanmelden bij een band -->
 <div class="modal fade bd-example-modal-lg" id="sentBandRequest_modal" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
   <div class="modal-dialog modal-lg">
@@ -135,11 +185,12 @@
         <div class="col-md-3">
             <div class="card">
                 <div class="card-header">{{ __('Beheer uw Band(s)') }}</div>
-
                 <div class="card-body bg-dark">
-                    <ul>Uw bands: 
+                    <ul>Uw bands:
                         @for($i=0; $i<$data['countUserBands']; $i++)
-                            <li>{{$user_bands[$i]['name']}}</li>
+                        <li style="cursor: pointer;"    onclick="location.href = 'bands/{{$user_bands[$i]['band_ID']}}';">
+                            {{$user_bands[$i]['name']}}
+                        </li>
                         @endfor
                         <br>
                         <li> <a style="color:#fff;"href="/verzoeken">Uw verzoeken: {{$data['countBandVerzoeken']}}</a></li>
@@ -148,16 +199,20 @@
                     </ul>
                     <hr style="border-color:#FFF !important">
                     <div>
-                        <button style="margin-left: 37%;" class="btn-outline-warning btn-sm btn" data-toggle="modal" data-target="#sentBandRequest_modal">
-                            Meedoen aan bij Band
-                        </button>
-                        <br>
-                        <br>
+                        <div class="band-button">
+                            <button style="float:left" class="btn-outline-warning btn-sm btn" data-toggle="modal" data-target="#createBand_modal">
+                                Band creëren
+                            </button>
+                            <button style="float:right" class="btn-outline-warning btn-sm btn" data-toggle="modal" data-target="#sentBandRequest_modal">
+                                Meedoen aan een Band
+                            </button>
+                        </div>
+
                         <h4 style="text-align:center;"> Lijst Bands</h4>
 
                         <ul style="padding-left:40%;">
                             @for ($i = 0; $i < $data['countBands']; $i++)
-                                <li>
+                                <li style="cursor: pointer;"    onclick="location.href = 'bands/{{$data['bands'][$i]['band_ID']}}';">
                                 ID: {{$data['bands'][$i]['band_ID']}} - 
                                 {{$data['bands'][$i]['name']}}
                                 </li>

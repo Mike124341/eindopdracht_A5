@@ -11,6 +11,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&display=swap" rel="stylesheet">
 
     <!-- Styles -->
+
     <link href="{{ asset('/css/slider.css')}}" rel="stylesheet">
     <link href="{{ asset('sass/app.scss') }}" rel="stylesheet">
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
@@ -26,15 +27,16 @@
 
 <body class="antialiased">
     <nav class="navbar navbar-dark bg-dark justify-content-between sticky-top">
-            <a class="navbar-brand">EPK</a>
+            <a href="/" class="navbar-brand">EPK</a>
             <div class="nav_link">
-                <a  href="">Bands</a>
+                <a  href="/bands">Bands</a>
                 <a  href="">Informatie</a>
                 <a  href="">Contact</a>
             </div>
-        <form class="form-inline">
-            <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
-            <button class="btn btn btn-outline-secondary my-2 my-sm-0" style="color:#fff;" type="submit">Search</button>
+        <form class="form-inline" method="POST" action="/search">
+            @csrf
+            <input class="form-control mr-sm-2" type="search" placeholder="Band Naam" aria-label="Search" name="keyword">
+            <button class="btn btn btn-outline-secondary my-2 my-sm-0" style="color:#fff;" type="submit">Zoeken</button>
         </form>
 
         <div class="">
@@ -53,7 +55,6 @@
             @endif
         </div>
     </nav>
-
 
     <div id="slider" class="carousel slide" data-ride="carousel">
         <div class="welkom_txt"> Welkom</div>
