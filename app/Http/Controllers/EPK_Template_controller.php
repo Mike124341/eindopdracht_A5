@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\User;
 use App\Models\Bands;
+use App\Models\Genre;
 use App\Models\BandLeden;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -40,8 +41,7 @@ class EPK_Template_controller extends Controller
         #media files
         $media = app(MediaController::class)->getMedia($id);
 
-
-
+        $genres = Genre::where('band_ID', $id)->get();
         
         $bandLeden = User::select('users.name')
         ->join('band_ledens', 'band_ledens.user_ID' , '=', 'users.id')
@@ -49,7 +49,7 @@ class EPK_Template_controller extends Controller
         ->where('band_ledens.band_ID', $id)
         ->get();
 
-        return view('EPK.basic_temp', compact('band', 'isAdmin', 'media', 'bandLeden' ));
+        return view('EPK.basic_temp', compact('band', 'isAdmin', 'media', 'bandLeden', 'genres' ));
         
     }
 }

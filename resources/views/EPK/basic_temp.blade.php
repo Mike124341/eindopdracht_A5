@@ -71,6 +71,45 @@
     </div>
 </div>
 
+<!-- Genre POP UP -->
+<div class="modal fade bd-example-modal-lg" id="genre_modal" tabindex="-1" role="dialog"
+    aria-labelledby="myLargeModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content bg-dark">
+            <form action="/genres" method="post" enctype="multipart/form-data">
+                @csrf
+                <div class="form-group">
+                    <label for="genre">Kies uw genre:</label>
+                    <div class="col-sm-10">
+                        <select id="chooseGenre" name="genre">
+                            <option value="jazz"> Jazz </option>
+                            <option value="rock"> Rock </option>
+                            <option value="metal"> Metal </option>
+                            <option value="hip-hop"> Hip-Hop </option>
+                            <option value="blues"> Blues </option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="proccess">Kies Video Optie:</label>
+                        <div class="col-sm-10">
+                            <select id="del_update" name="proccess">
+                                <option value="del">Delete</option>
+                                <option value="up">Toevoegen</option>
+                            </select>
+                        </div>
+                    </div>
+                    <input type="hidden" value="{{$band[0]['band_ID']}}" name='band-id'>
+                    <input type="hidden" value="{{$isAdmin}}" name='A'>
+
+                    <button type="submit" class="btn btn-sm btn-warning">verander</button>
+                </div>
+
+            </form>
+        </div>
+    </div>
+</div>
 
 <div class="row justify-content-center">
     <div class="col-md-3">
@@ -88,6 +127,11 @@
                     data-target="#media_modal">
                     Verander Media
                 </button>
+                <button type="button" id="genre_modal" class="btn btn-outline-warning btn-sm" data-toggle="modal"
+                    data-target="#genre_modal">
+                    Genres
+                </button>
+                
                 @endif
 
             </div>
@@ -111,12 +155,12 @@
 
                 <!-- Message -->
                 @if (\Session::has('success'))
-                <div class="alert alert-success message">
-                    <ul>
-                        <li>{!! \Session::get('success') !!}</li>
-                    </ul>
-                </div>
-                @endif
+                    <div class="alert alert-success message">
+                        <ul>
+                            <li>{!! \Session::get('success') !!}</li>
+                        </ul>
+                    </div>
+                @endif  
 
                 <!-- Foto -->
                 <div class="img-container container">
@@ -126,26 +170,33 @@
                 <!-- Midden Stuk -->
                 <div class="carousel slide content_slider container" data-ride="carousel">
                     <div class="carousel-inner">
-                        <div class="carousel-item active">
+                        <div class="carousel-item active" id="bandDisc">
                             <p id="biografie">
-                                <h3>Biografie</h3>
+                                <h1>Biografie</h1>
                                 {{$band[0]['discription']}}
+
+                                <h1>Genres</h1>
+                                <ul>
+                                @for($i=0; $i < count($genres); $i++)
+                                    <li>{{$genres[$i]['genre']}}</li>
+                                @endfor
+                                </ul>
                             </p>
                         </div>
 
                         <div class="carousel-item">
                             <p id="leden">
-                                <h3>Informatie</h3>
-                                {{$band[0]['discription']}}
+                                <h1>Band Leden</h1>
+                                <ul>
+                                    @for($i=0; $i < count($bandLeden); $i++)
+                                        <li id=ledenlist>
+                                            {{$bandLeden[$i]['name']}}
+                                        </li>
+                                    @endfor
+                                </ul>
                             </p>
                         </div>
 
-                        <div class="carousel-item">
-                            <p id="leden">
-                                <h3>Contact</h3>
-                                {{$band[0]['discription']}}
-                            </p>
-                        </div>
                     </div>
                     <a class="carousel-control-prev" href=".content_slider" role="button" data-slide="prev">
                         <span class="carousel-control-prev-icon" aria-hidden="true"></span>

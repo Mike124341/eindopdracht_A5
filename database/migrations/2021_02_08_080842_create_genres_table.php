@@ -14,8 +14,10 @@ class CreateGenresTable extends Migration
     public function up()
     {
         Schema::create('genres', function (Blueprint $table) {
-            $table->id();
-            $table->timestamps();
+            $table->id('genreCode');
+            $table->string('genre');
+            $table->unsignedBigInteger('band_ID');
+            $table->foreign('band_ID')->references('band_ID')->on('bands')->onDelete('cascade');
         });
     }
 

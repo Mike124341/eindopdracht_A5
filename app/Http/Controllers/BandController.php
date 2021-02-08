@@ -3,7 +3,6 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Support\Facades\Auth;
-use App\Models\Band_Requests;
 use App\Models\Band_pictures;
 use Illuminate\Http\Request;
 use App\Models\Band_videos;
@@ -13,51 +12,13 @@ use App\Models\User;
 
 class BandController extends Controller
 {
-    #Kijk of de huidig gebruiker openstaande requests heefd
-    public function process(Request $request, User $user)  {
-        $user = Auth::user();
-        $current_user_requests = Band_Requests::where('band_lid', $user->id)->get();
-        $band_ID = $request->input('id_band');
+    public function deleteBand(Request $request) {
+        $request->validate(['band_ID' => 'required'], ['band_ID.required' => 'Geen band ingevuld']);
+        $band = $request->input('band_ID');
 
-        if($request->input('accept') == 'accept')  {    #Kijk op de knop accept is gedrukt
-            try {
-                $data = array(  #De data die in de bandLends table moet komen
-                    'user_ID' => $request->input('id_sender'),
-                    'band_ID' => $request->input('id_band'),
-                );
-                #Insert de data array hier boven
-                $b = BandLeden::insert($data);
+        $deleteBand = Bands::where('band_ID', $band)->delete();
 
-                #Update de request state
-                $updateRequest = Band_Requests::where('sender_ID', $request->input('id_sender'))
-                ->where('band_ID', $request->input('id_band'))->update(['accepted' => TRUE]);
-                
-             } catch (\Exception $e) {  
-                if ($e->getCode() == 23000) {   
-                    #23000 is de error code van meerdere records die niet uniek zijn wat dus niet mag
-                    #Met andere woorden de Gebruiker die de request heeft verstuurd is al lid van deze band!
-                    $updateRequest = Band_Requests::where('sender_ID', $request->input('id_sender'))
-                    ->where('band_ID', $request->input('id_band'))->update(['accepted' => TRUE]);
-                    #verwijder dus de request 
-                    $deleteAcceptedRequests = Band_Requests::where('accepted', TRUE)->delete();
-                    #stuur terug met foutmelding
-                    return back()->withErrors(['Foutmelding', 'User is al Lid']);  
-                }
-             }
-            #Stuur terug met Succes melding
-            return redirect()->back()->with('success', 'U heeft een nieuwe band lid');
-        }
-        #Voor de zekerheid check of de decline knop is gedrukt
-        elseif($request->input('decline') == 'decline'){
-            #verwijder de request
-            $updateRequest = Band_Requests::where('sender_ID', $request->input('id_sender'))
-            ->where('band_ID', $request->input('id_band'))->delete();
-
-            return back()->withErrors(['succes', 'Verzoek afgewezen']);
-        }
-        else{
-            return back()->withErrors(['Foutmelding', 'Sorry er is iets fout gegeaan!']);
-        }
+        return redirect()->back()->with('success', 'band verwijderd');
     }
 
     #Functie om band maker toe tevoegen aan band
@@ -142,6 +103,31 @@ class BandController extends Controller
 
         $this->addBandMaker($band_data);
         
-        return back()->withErrors(['Foutmelding', $band_data]);
+        return back()->with('success', 'Band aangemaakt: ', $band_data['name'] );
     }
+
+     #Hier komt de functie voor het updaten van de pagina kleur
+     public function updateColor(Request $request)   {
+            
+        #variable komt de input in te staan tweede argument is voor als niet is ingevoerd
+        #LET OP Straks moet hier de kleur van uit de DATABASE komen
+        $achtergrondColor = $request->input('achtergrondkleur');
+        $tekstColor = $request->input('tekstkleur');
+        $id = $request->input('id');
+        $isAdmin = $request->input('A');
+        
+        #Check of de gebruiker admin rechten heeft
+        if (isset($id) && $isAdmin == TRUE)   {
+            $colors = Bands::where('band_ID', $id)->update(
+                ['color_bg' => $achtergrondColor, 'color_txt' => $tekstColor] );
+
+            return redirect()->back()->with('success', 'Kleuren zijn veranderd');
+        }
+        else{
+            return redirect()->back()->withErrors('Foutmelding', 'U niet de benodigde rechten voor het veranderen van deze pagina!');
+        }
+
+        return back()->withErrors(['Foutmelding', 'er is iets misgegaan']);
+    }
+
 }

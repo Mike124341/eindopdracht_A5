@@ -31,8 +31,6 @@
             <a href="/" class="navbar-brand">EPK</a>
             <div class="nav_link">
                 <a  href="/bands">Bands</a>
-                <a  href="">Informatie</a>
-                <a  href="">Contact</a>
             </div>
         <form class="form-inline" method="POST" action="/search">
             @csrf

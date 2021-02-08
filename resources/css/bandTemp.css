@@ -1,3 +1,8 @@
+/*
+orders staan uit gecomment omdat als er iets mis gaat dat ik aan de hand
+van de borders kan zien waar de verschillende divs staan en wat er niet klopt
+*/
+
 /*----------Main body styling-----------*/
 .col-md-3{
     min-width: 2300px;
@@ -22,7 +27,7 @@
 
 /*-------- 1e img ---------------*/
 .img-container {
-    border: solid red 2px;
+    /* border: solid red 2px; */
     min-width: 500px !important;
     max-width: 1100px !important;
     min-height: 300px !important;
@@ -43,7 +48,7 @@
     max-width: 1100px !important;
     min-height: 300px !important;
     max-height: 600px !important;
-    border:solid white 2px !important;
+    /* border:solid white 2px !important; */
     float: right;
 }
 
@@ -64,16 +69,29 @@
     max-width: 100%;
 }
 
+
 #bandDisc {
-    border: solid blue 2px;
+    /* border: solid blue 2px; */
     text-align:center;
     margin-top: 30px;
-    font-size: 20px;
+    font-size: 30px;
     margin-bottom: 30px;
 }
 
+#bandDisc > ul {
+    /* border: solid 2px white; */
+    list-style: none;
+    max-width: fit-content;
+    margin-left: 45%;
+
+}
+
+#ledenlist {
+    font-size: 30px;
+}
+
 .vidSlider {
-    border: solid darkred 2px;
+    /* border: solid darkred 2px; */
     margin-top: 200px !important;
     min-width:  70% !important;
     min-height: 70% !important;
@@ -85,4 +103,9 @@
 
 .vidSlider > h1 {
     text-align: center;
+}
+
+.vidSlider > a {
+    max-height: 10px !important;
+    top: 428px !important;
 }
