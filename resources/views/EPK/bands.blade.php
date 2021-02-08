@@ -1,5 +1,5 @@
 @extends('layouts.app')
-
+<link rel="stylesheet" href="{{asset('/css/bandsPage.css')}}">
 @section('content')
 
 <!-- Error displaty -->
@@ -26,40 +26,48 @@
 @endif
 
 <div class="row justify-content-center">
-    <div class="card" style="min-width: 1000px; max-width:1000px">
-        <div class="card-header" style="text-align: center; background-color: #8b0000">
+    <div class="card main-card">
+        <div class="card-header">
             <h2> {{ __('Alle Bands') }}</h2>
         </div>
 
-        <div class="card-body bg-dark" style='text-align:center; min-height: 700px;font-size:20px;'>
+        <div class="card-body bg-dark">
             @if (session('status'))
             <div class="alert alert-success" role="alert">
                 {{ session('status') }}
             </div>
             @endif
-            <p style='margin-left:0%;'>
+            <p>
                 Dit zijn alle bands die zijn in geschreven op de website. <br>
                 Hier kunt u alle informatie vinden over de band die U zoekt, <br>
                 door op de band te klikken die u intereseerd komt u op de pagina van deze band. <br>
             </p>
-            <hr style="border-color:white;">
+            <hr>
 
             <h4>-Band lijst - Band Naam - Band ID-</h4> <br>
-            <div id="bandList" style="text-align:center; display:flex; margin-left:37%;">
-                <ul style="list-style:none;">
+            <div id="bandList">
+                <table>
+                    <tr>
+                        <th>Band naam</th>
+                        <th>Band Biografie</th>
+                        <th>Band ID</th>
+                    </tr>
                     @for($i=0; $i < count($data['allBands']);$i++) 
-                        <li style="cursor: pointer;"onclick="location.href = 'bands/{{$data['allBands'][$i]['band_ID']}}';">
+                    <tr>
+                        <td onclick="location.href = 'bands/{{$data['allBands'][$i]['band_ID']}}';">
                             {{$data['allBands'][$i]['name']}}
-                        </li>
-                    @endfor
-                </ul>
-                <ul style="list-style:none;">
-                    @for($i=0; $i < count($data['allBands']);$i++) 
-                        <li style="cursor: pointer;"onclick="location.href = 'bands/{{$data['allBands'][$i]['band_ID']}}';">
+                        </td>
+                        
+                        <td onclick="location.href = 'bands/{{$data['allBands'][$i]['band_ID']}}';">
+                            {{$data['allBands'][$i]['discription']}}
+                        </td>
+
+                        <td onclick="location.href = 'bands/{{$data['allBands'][$i]['band_ID']}}';">
                             {{$data['allBands'][$i]['band_ID']}}
-                        </li>
+                        </td>
+                    </tr>
                     @endfor
-                </ul>
+                </table>
             </div>
 
         </div>

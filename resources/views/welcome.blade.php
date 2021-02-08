@@ -15,6 +15,7 @@
     <link href="{{ asset('/css/slider.css')}}" rel="stylesheet">
     <link href="{{ asset('sass/app.scss') }}" rel="stylesheet">
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+    <link href="{{ asset('css/welcome.css') }}" rel="stylesheet">
     <script src="{{ asset('js/app.js') }}" defer></script>
 
     <style>
@@ -36,19 +37,18 @@
         <form class="form-inline" method="POST" action="/search">
             @csrf
             <input class="form-control mr-sm-2" type="search" placeholder="Band Naam" aria-label="Search" name="keyword">
-            <button class="btn btn btn-outline-secondary my-2 my-sm-0" style="color:#fff;" type="submit">Zoeken</button>
+            <button class="btn btn btn-outline-secondary my-2 my-sm-0" type="submit">Zoeken</button>
         </form>
 
-        <div class="">
+        <div class="auth">
             @if (Route::has('login'))
             <div class="hidden fixed top-0 right-0 sm:block">
                 @auth
-                    <a href="{{ url('/home') }}" style="color:#fff;" class="btn btn-outline-secondary">Home</a>
+                    <a href="{{ url('/home') }}" class="btn btn-outline-secondary">Home</a>
                 @else
-                    <a href="{{ route('login') }}" style="color:#fff;" class="btn btn-outline-secondary">Login</a>
+                    <a href="{{ route('login') }}"  class="btn btn-outline-secondary">Login</a>
                 @if (Route::has('register'))
-                    <a href="{{ route('register') }}" style="color:#fff;"
-                        class="btn btn-outline-secondary">Register</a>
+                    <a href="{{ route('register') }}" class="btn btn-outline-secondary">Register</a>
                 @endif
                 @endif
             </div>

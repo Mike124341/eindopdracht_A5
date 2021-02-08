@@ -1,0 +1,34 @@
+/*--------------Algemeen--------------*/
+li{
+    color: a !important ;
+}
+
+#dash-welcome{
+    text-align:center;
+}
+
+/*--------------Band sectie--------------*/
+
+.card-bands > ul > li, .card-bands > ul >li > a {
+    cursor: pointer;
+    color: #fff;
+}
+
+hr{
+    border-color:#FFF !important
+}
+
+.btn-right {
+    float:right;
+}
+
+.btn-left {
+    float:left;
+}
+
+.bands-info > h4{
+    text-align:center;
+}
+.bands-info > ul{
+    padding-left:35%;
+}

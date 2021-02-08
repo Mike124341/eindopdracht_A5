@@ -1,0 +1,45 @@
+/*-------Main card body ------------*/
+.main-card{
+    min-width: 1000px !important;
+    max: width 1000px !important;
+}
+
+.main-card > .card-header {
+    text-align: center !important;
+    background-color: #8b0000 !important;
+}
+
+.main-card > .card-body {
+    text-align:center !important;
+    min-height: 700px !important;
+    font-size:20px !important;
+}
+
+.main-card > .card-body > hr {
+    border-color: #fff;
+}
+
+ /*---------Band Lijst-----------*/
+ .main-card > .card-body > #bandList > table {
+    font-family: arial, sans-serif;
+    border-collapse: collapse;
+    width: 100%;
+    
+}
+  
+td {
+    border: 1px solid #dddddd !important;
+    text-align: left;
+    padding: 8px;
+    cursor: pointer;
+}
+
+th {
+    border: 1px solid #dddddd;
+    text-align: left;
+    padding: 8px;
+}
+  
+tr:nth-child(even) {
+    background-color: #8b000029;
+}

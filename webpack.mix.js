@@ -13,4 +13,12 @@ const mix = require('laravel-mix');
 
 mix.js('resources/js/app.js', 'public/js')
     .vue()
-    .sass('resources/sass/app.scss', 'public/css');
+    .sass('resources/sass/app.scss', 'public/css')
+    .css('resources/css/search.css','public/css')
+    .css('resources/css/bandTemp.css','public/css')
+    .css('resources/css/welcome.css','public/css')
+    .css('resources/css/bandsPage.css','public/css')
+    .css('resources/css/dashboard.css','public/css')
+    .css('resources/css/verzoeken.css','public/css');
+
+

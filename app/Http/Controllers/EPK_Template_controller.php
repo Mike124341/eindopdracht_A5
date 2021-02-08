@@ -31,13 +31,15 @@ class EPK_Template_controller extends Controller
     public function index($id){
 
         $band = Bands::where('band_ID', $id)->get();
-        // $loggedIn = FALSE;
+        
+        #Check of de band bestaat
+        if($band == '[]')    { return view('welcome'); }
+
         $isAdmin = $this->isAdmin($band);
         
         #media files
         $media = app(MediaController::class)->getMedia($id);
 
-        // if($band == '[]')    { return view('welcome'); }
 
 
         

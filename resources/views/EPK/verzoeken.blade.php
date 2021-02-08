@@ -1,8 +1,8 @@
 @extends('layouts.app')
-
+<link rel="stylesheet" href="{{ asset('/css/verzoeken.css') }}">
 @section('content')
 
-<!-- Error displaty -->
+<!-- Error display -->
 @if ($errors->any())
 <div class="alert alert-danger message" role="alert">
     <button type="button" class="close" data-dismiss="alert" aria-label="Close">
@@ -27,35 +27,32 @@
 
 <!--------------------------- VERZOEKEN -------------------------->
 <div class="row justify-content-center">
-    <div class="card" style="min-width: 1800px; max-width:1800px">
-        <div class="card-header" style="text-align: center;">
+    <div class="card main">
+        <div class="card-header">
             <h4> {{ __('Verzoeken') }}</h4>
         </div>
 
-        <div class="card-body bg-dark" style='text-align:center; min-height: 700px;'>
+        <div class="card-body bg-dark">
             @if (session('status'))
             <div class="alert alert-success" role="alert">
                 {{ session('status') }}
             </div>
             @endif
 
-            @for($i=0; $i < count($data['verzoeken']); $i++) <form method="POST" action="process"
-                style="display: inline-block; padding-right:10px; padding-left:10px; padding-bottom:10px; border-right: solid 1px white; border-left: solid 1px white;">
+            @for($i=0; $i < count($data['verzoeken']); $i++) <form method="POST" action="process">
                 @csrf
-                U heeft een verzoek van: {{$data['userNames'][$i]['name']}} <br>
-                deze gebruiker vraagt of hij/zij deel mag uitmaken van de band: {{$data['bandNames'][$i]['name']}} <br>
-                Klik op
-                <button type='submit' value='accept' name="accept"
-                    style="background-color: transparent; color: white; border: none; text-decoration: underline;">
-                    accepteren
-                </button>
-                of
-                <button type='submit' value='decline' name='decline'
-                    style="background-color: transparent; color: white; border: none; text-decoration: underline;">
-                    weigeren
-                </button> zodat wij het verzoek kunnen verwerken
-                <input type="hidden" name="id_sender" value="{{$data['verzoeken'][$i]['sender_ID']}}">
-                <input type="hidden" name="id_band" value="{{$data['verzoeken'][$i]['band_ID']}}">
+                <p>
+                    U heeft een verzoek van: {{$data['userNames'][$i]['name']}} <br>
+                    deze gebruiker vraagt of hij/zij deel mag uitmaken van de band: 
+                    <i onclick="location.href = 'bands/{{$data['bandNames'][$i]['band_ID']}}';"><u> {{$data['bandNames'][$i]['name']}} </u></i><br>
+                    Klik op
+                    <button type='submit' value='accept' name="accept"> accepteren </button>
+                    of
+                    <button type='submit' value='decline' name='decline'>weigeren </button> 
+                    zodat wij het verzoek kunnen verwerken
+                    <input type="hidden" name="id_sender" value="{{$data['verzoeken'][$i]['sender_ID']}}">
+                    <input type="hidden" name="id_band" value="{{$data['verzoeken'][$i]['band_ID']}}">
+                </p>
                 </form>
                 @endfor
 

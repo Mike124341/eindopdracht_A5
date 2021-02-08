@@ -1,0 +1,35 @@
+/*---------Main Card-----------*/
+
+.main{
+    min-width: 1800px !important;
+    max-width:1800px !important;
+}
+
+.main > .card-header{
+    text-align: center;
+}
+
+.main > .card-body{
+    text-align: center;
+    min-height: 700px;
+}
+
+.main > .card-body > form{
+    display: inline-block;
+    padding-right:10px;
+    padding-left:10px;
+    padding-bottom:10px;
+    border-right: solid 1px white;
+    border-left: solid 1px white;
+}
+
+.main > .card-body >form > p > i, .main > .card-body >form > p > u{
+    cursor: pointer;
+}
+
+.main > .card-body > form > p > button {
+    background-color: transparent;
+    color: white;
+    border: none;
+    text-decoration: underline;
+}

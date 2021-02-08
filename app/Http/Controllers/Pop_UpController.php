@@ -89,15 +89,18 @@ class Pop_UpController extends Controller
             $achtergrondColor = $request->input('achtergrondkleur');
             $tekstColor = $request->input('tekstkleur');
             $id = $request->input('id');
+            $isAdmin = $request->input('A');
             
-            if (isset($id))   {
+            #Check of de gebruiker admin rechten heeft
+            if (isset($id) && $isAdmin == TRUE)   {
                 $colors = Bands::where('band_ID', $id)->update(
                     ['color_bg' => $achtergrondColor, 'color_txt' => $tekstColor] );
 
                 return redirect()->back()->with('success', 'Kleuren zijn veranderd');
             }
-            #Update kleur in de data base
-
+            else{
+                return redirect()->back()->withErrors('Foutmelding', 'U niet de benodigde rechten voor het veranderen van deze pagina!');
+            }
     
             return back()->withErrors(['Foutmelding', 'er is iets misgegaan']);
         }

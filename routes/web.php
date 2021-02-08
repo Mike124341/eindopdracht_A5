@@ -19,7 +19,7 @@ Route::get('/', function () {
 
 Auth::routes();
 Route::get('bands', 'App\Http\Controllers\BandsViewController@index')->name('bands');;
-Route::get('bands/{id}', 'App\Http\Controllers\EPK_Template_controller@index');
+Route::get('bands/{id}', 'App\Http\Controllers\EPK_Template_controller@index')->where('id', '[0-9]+');
 Route::post('search', 'App\Http\Controllers\SearchController@index');
 Route::fallback(function () {
   return view('welcome');

@@ -20,7 +20,7 @@ class VerzoekenController extends Controller
         ->where('band_requests.band_lid', $user->id)
         ->get();
 
-        $bandNames = Bands::select('bands.name')
+        $bandNames = Bands::select('bands.name' , 'bands.band_ID')
         ->join('band_requests', 'bands.band_ID' , '=', 'band_requests.band_ID')
         ->where('band_requests.band_lid', $user->id)
         ->get();

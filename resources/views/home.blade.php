@@ -1,8 +1,8 @@
 @extends('layouts.app')
-
+<link href="{{ asset('css/dashboard.css') }}" rel="stylesheet">
 @section('content')
 
-<h1 style="text-align:center">Welkom! {{$data['user']['name']}}</h1>
+<h1 id='dash-welcome'>Welkom! {{$data['user']['name']}}</h1>
 
 <!-- Message -->
 @if (\Session::has('success'))
@@ -185,34 +185,34 @@
         <div class="col-md-3">
             <div class="card">
                 <div class="card-header">{{ __('Beheer uw Band(s)') }}</div>
-                <div class="card-body bg-dark">
+                <div class="card-body bg-dark card-bands">
                     <ul>Uw bands:
                         @for($i=0; $i<$data['countUserBands']; $i++)
-                        <li style="cursor: pointer;"    onclick="location.href = 'bands/{{$user_bands[$i]['band_ID']}}';">
+                        <li onclick="location.href = 'bands/{{$user_bands[$i]['band_ID']}}';">
                             {{$user_bands[$i]['name']}}
                         </li>
                         @endfor
                         <br>
-                        <li> <a style="color:#fff;"href="/verzoeken">Uw verzoeken: {{$data['countBandVerzoeken']}}</a></li>
+                        <li> <a href="/verzoeken">Uw verzoeken: {{$data['countBandVerzoeken']}}</a></li>
                         <br>
 
                     </ul>
-                    <hr style="border-color:#FFF !important">
-                    <div>
-                        <div class="band-button">
-                            <button style="float:left" class="btn-outline-warning btn-sm btn" data-toggle="modal" data-target="#createBand_modal">
+                    <hr>
+                    <div class="bands-info">
+                        <div>
+                            <button class="btn-outline-warning btn-sm btn btn-left" data-toggle="modal" data-target="#createBand_modal">
                                 Band creëren
                             </button>
-                            <button style="float:right" class="btn-outline-warning btn-sm btn" data-toggle="modal" data-target="#sentBandRequest_modal">
+                            <button class="btn-outline-warning btn-sm btn btn-right" data-toggle="modal" data-target="#sentBandRequest_modal">
                                 Meedoen aan een Band
                             </button>
                         </div>
 
-                        <h4 style="text-align:center;"> Lijst Bands</h4>
+                        <h4> Lijst Bands</h4>
 
-                        <ul style="padding-left:40%;">
+                        <ul>
                             @for ($i = 0; $i < $data['countBands']; $i++)
-                                <li style="cursor: pointer;"    onclick="location.href = 'bands/{{$data['bands'][$i]['band_ID']}}';">
+                                <li onclick="location.href = 'bands/{{$data['bands'][$i]['band_ID']}}';">
                                 ID: {{$data['bands'][$i]['band_ID']}} - 
                                 {{$data['bands'][$i]['name']}}
                                 </li>

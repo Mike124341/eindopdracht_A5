@@ -1,4 +1,10 @@
 {
     "/js/app.js": "/js/app.js",
-    "/css/app.css": "/css/app.css"
+    "/css/app.css": "/css/app.css",
+    "/css/welcome.css": "/css/welcome.css",
+    "/css/bandTemp.css": "/css/bandTemp.css",
+    "/css/search.css": "/css/search.css",
+    "/css/verzoeken.css": "/css/verzoeken.css",
+    "/css/dashboard.css": "/css/dashboard.css",
+    "/css/bandsPage.css": "/css/bandsPage.css"
 }

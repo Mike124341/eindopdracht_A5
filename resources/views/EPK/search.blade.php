@@ -1,24 +1,8 @@
 @extends('layouts.app')
+<link href="{{ asset('css/search.css') }}" rel="stylesheet">
+
 @section('content')
 
-<style>
-table {
-  font-family: arial, sans-serif;
-  border-collapse: collapse;
-  width: 100%;
-}
-
-td, th {
-  border: 1px solid #dddddd;
-  text-align: left;
-  padding: 8px;
-}
-
-tr:nth-child(even) {
-  background-color: #8b000029;
-}
-
-</style>
 
 <!-- Error displaty -->
 @if ($errors->any())
@@ -44,12 +28,12 @@ tr:nth-child(even) {
 @endif
 
 <div class="row justify-content-center">
-    <div class="card" style="min-width: 1500px; max-width:1000px">
-        <div class="card-header" style="text-align: center; background-color: #8b0000">
+    <div class="card main">
+        <div class="card-header">
             <h2> {{ __('Uw zoek resultaten') }}</h2>
         </div>
 
-        <div class="card-body bg-dark" style='text-align:center; min-height: 700px;font-size:20px;'>
+        <div class="card-body bg-dark" style=''>
             <table>
                 <tr>
                     <th>Naam</th>
@@ -58,9 +42,9 @@ tr:nth-child(even) {
                 </tr>
                 @for($i=0; $i < count($bands); $i++)
                     <tr>
-                        <td style="cursor: pointer;"onclick="location.href = 'bands/{{$bands[$i]['band_ID']}}';"> {{$bands[$i]['name']}} </td>
-                        <td style="cursor: pointer;"onclick="location.href = 'bands/{{$bands[$i]['band_ID']}}';"> {{$bands[$i]['discription']}} </td>
-                        <td style="cursor: pointer;"onclick="location.href = 'bands/{{$bands[$i]['band_ID']}}';"> {{$bands[$i]['band_ID']}} </td>
+                        <td onclick="location.href = 'bands/{{$bands[$i]['band_ID']}}';"> {{$bands[$i]['name']}} </td>
+                        <td onclick="location.href = 'bands/{{$bands[$i]['band_ID']}}';"> {{$bands[$i]['discription']}} </td>
+                        <td onclick="location.href = 'bands/{{$bands[$i]['band_ID']}}';"> {{$bands[$i]['band_ID']}} </td>
                     </tr>
                 @endfor
             </table>
